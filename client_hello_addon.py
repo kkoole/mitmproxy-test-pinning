@@ -12,6 +12,12 @@ def request(flow):
             ctx.log('DEBUG: server "{}" cert issuer "{}"'.format(n, cert.issuer))
             ctx.log('DEBUG: server "{}" cert subject "{}"'.format(n, cert.subject))
 
+        c_certs = flow.client_conn.mitmcert
+        for cert in c_certs:
+            ctx.log('DEBUG: mitmproxy cert "{}"'.format(cert))
+            ctx.log('DEBUG: mitmproxy cert issuer "{}"'.format(cert.issuer))
+            ctx.log('DEBUG: mitmproxy cert subject "{}"'.format(cert.subject))
+
     # other things to be extracted
     if not debug and flow.client_conn and flow.client_conn.tls_established:
         tls_client_certificate_list = flow.client_conn.certificate_list
@@ -27,7 +33,7 @@ def request(flow):
         if tls_client_cipher_list:
             ctx.log('Cipher list "{}"'.format(tls_client_cipher_list))
 
-    if flow.server_conn and flow.server_conn.tls_established:
+    if not debug and flow.server_conn and flow.server_conn.tls_established:
         tls_server_certificate_list = flow.server_conn.certificate_list
         if tls_server_certificate_list:
             ctx.log('Certificate list "{}"'.format(tls_server_certificate_list))
