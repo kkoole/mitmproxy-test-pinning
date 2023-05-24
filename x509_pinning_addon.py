@@ -13,24 +13,26 @@ class CertificatePinningAddon:
         }
 
     def http_connect(self, flow: http.HTTPFlow):
-        if flow.metadata.get("tls_established"):
-            certificate = flow.server_conn.connection.server_tls._ctx.get_cert()
-            x509 = certificate.to_cryptography()
+        if flow.client_conn and flow.server_conn.tls_established:
+            tls_server_certificate_list = flow.server_conn.certificate_list
+            print(tls_server_certificate_list)
 
-            if self.validate_pinning(x509):
-                ctx.log.info("Certificate pinning is valid")
-            else:
-                ctx.log.error("Certificate pinning validation failed")
+            #x509 = certificate.to_cryptography()
 
-    def validate_pinning(self, x509):
-        for attr, expected_value in self.expected_attributes.items():
-            attr_value = getattr(x509.subject, attr)
-            if attr_value != expected_value:
-                return False
+            #if self.validate_pinning(x509):
+            #    ctx.log.info("Certificate pinning is valid")
+            #else:
+            #    ctx.log.error("Certificate pinning validation failed")
+
+    #def validate_pinning(self, x509):
+    #    for attr, expected_value in self.expected_attributes.items():
+    #        attr_value = getattr(x509.subject, attr)
+    #        if attr_value != expected_value:
+    #            return False
 
         # Additional checks for the certificate chain can be added here
 
-        return True
+    #    return True
 
 
 addons = [
