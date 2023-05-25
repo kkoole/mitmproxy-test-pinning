@@ -22,16 +22,18 @@ class CustomCertificateAddon:
         if flow.request.pretty_host == self.hostname and flow.request.scheme == "https":
             self.replace_certificate(flow)
 
-        ctx.log('DEBUG: "{}"'.format(flow.client_conn.mitmcert))
-        ctx.log('DEBUG: mitmproxy cert "{}"'.format(flow.client_conn.mitmcert))
-        ctx.log('DEBUG: mitmproxy cert issuer "{}"'.format(flow.client_conn.mitmcert.issuer))
-        ctx.log('DEBUG: mitmproxy cert subject "{}"'.format(flow.client_conn.mitmcert.subject))
+        if flow.client_conn.mitmcert:
+            ctx.log('DEBUG: "{}"'.format(flow.client_conn.mitmcert))
+            ctx.log('DEBUG: mitmproxy cert "{}"'.format(flow.client_conn.mitmcert))
+            ctx.log('DEBUG: mitmproxy cert issuer "{}"'.format(flow.client_conn.mitmcert.issuer))
+            ctx.log('DEBUG: mitmproxy cert subject "{}"'.format(flow.client_conn.mitmcert.subject))
 
     def replace_certificate(self, flow: http.HTTPFlow):
         cert = crypto.X509()  # Create a new X.509 certificate
 
         # Configure the certificate with desired details
-        cert.get_subject().CN = self.hostname
+        #cert.get_subject().CN = self.hostname
+        cert.get_subject().CN = "sha257.badssl.com" 
         cert.set_serial_number(1000)
         cert.gmtime_adj_notBefore(0)
         cert.gmtime_adj_notAfter(31536000)
