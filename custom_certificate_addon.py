@@ -20,6 +20,7 @@ class CustomCertificateAddon:
 
     def request(self, flow: http.HTTPFlow) -> None:
         if flow.request.pretty_host == self.hostname and flow.request.scheme == "https":
+            ctx.log('DEBUG: "{}"'.format("Matched hostname!, replacing certificate..."))
             self.replace_certificate(flow)
 
         if flow.client_conn.mitmcert:
@@ -33,7 +34,7 @@ class CustomCertificateAddon:
 
         # Configure the certificate with desired details
         #cert.get_subject().CN = self.hostname
-        cert.get_subject().CN = "sha257.badssl.com" 
+        cert.get_subject().CN = "sha256.goodssl.com" 
         cert.set_serial_number(1000)
         cert.gmtime_adj_notBefore(0)
         cert.gmtime_adj_notAfter(31536000)
