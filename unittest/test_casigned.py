@@ -61,7 +61,7 @@ def main(ca_cert, hostname="*.badssl.com"):
         # Launch mitmdump using specific certificate
         print("Start mitmdump...")
         try:
-            print(os.system("./mitmdump --certs %s=%s"%(entry.strip(), cert)))
+            print(os.system("./mitmdump --certs %s=%s"%(hostname.strip(), cert)))
         except KeyboardInterrupt:
             continue
     return
