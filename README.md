@@ -32,4 +32,4 @@ The python wrapper script requires that mitmdump is placed within the script dir
 
 After performing the test the next test can be started using ```CTRL+C```.
 
-![]('img/Screenshot from 2023-05-31 12-53-24.png')
+![](img/screenshot.png)
