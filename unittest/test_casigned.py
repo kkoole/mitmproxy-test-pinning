@@ -54,10 +54,8 @@ def main(ca_cert, hostname="*.badssl.com"):
     # Launch mitmdump using certificates
     for cert in certificates:
         print("Using certificate file: %s"%(cert))
-
         # Print various attributes of the certificate
         print_certificate_attributes(cert) 
-
         # Launch mitmdump using specific certificate
         print("Start mitmdump...")
         try:
