@@ -26,6 +26,6 @@ The addons can be used with mitmproxy as follows.
 
 The python wrapper script requires that mitmdump is placed within the script directory. Next the script can be used as follows.
 
-```cd unittest
-./test_selfsigned.py```
+```cd unittest```
+```./test_selfsigned.py ./hostlist.txt```
 
