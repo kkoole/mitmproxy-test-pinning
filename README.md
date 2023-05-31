@@ -2,7 +2,7 @@
 
 This repository contains a collection of various mitmproxy addons and python wrapper scripts for using mitmproxy/mitmdump to test certificate pinning misimplementations.
 
-The original idea was to write a custom addon to dynamically generate a certificate while performing what is called 'upstream certificate sniffing' 
+The original idea was to write a custom addon to dynamically generate a certificate while performing what is called 'upstream certificate sniffing', though we encountered difficulties with using the correct mitmproxy hooks and manipulating the TLS session before it is established.
 
 https://github.com/mitmproxy/mitmproxy/issues/6149
 
