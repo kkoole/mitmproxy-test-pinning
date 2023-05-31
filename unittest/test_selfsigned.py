@@ -57,9 +57,9 @@ def main(hostname="*.badssl.com"):
         # Print various attributes of the certificate
         print_certificate_attributes(cert) 
         # Launch mitmdump using specific certificate
-        print("Start mitmdump...")
+        print("Starting mitmdump...")
         try:
-            print(os.system("./mitmdump --certs %s=%s"%(hostname.strip(), cert)))
+            print(os.system("./mitmdump --certs %s=%s"%(hostname, cert)))
         except KeyboardInterrupt:
             continue
     return
@@ -67,5 +67,6 @@ def main(hostname="*.badssl.com"):
 
 if __name__ == '__main__':
     hostlist = open(sys.argv[1], 'r').readlines()
-    for hostname in hostlist:
+    for host in hostlist:
+        hostname = host.strip()
         main(hostname)
