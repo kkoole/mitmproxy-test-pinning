@@ -1,6 +1,12 @@
 # mitmproxy-test-pinning
 
-Collection of mitmproxy addons for automatically detecting certificate pinning misimplementations.
+This repository contains a collection of various mitmproxy addons and python wrapper scripts for using mitmproxy/mitmdump to test certificate pinning misimplementations.
+
+The original idea was to write a custom addon to dynamically generate a certificate while performing what is called 'upstream certificate sniffing' 
+
+https://github.com/mitmproxy/mitmproxy/issues/6149
+
+Alternatively, we implemented a python wrapper to start `mitmdump` with a dynamically generated self-signed certificate. A disadvantage of this approach is that we are not able to sniff upstream certificates to dynamically generate the certificates, instead a list of hostnames or alternatively attributes is used to perform certificate generation.
 
 ## Getting started
 
@@ -14,7 +20,12 @@ Next clone the repository
 
 ## Usage
 
-The addons can be used with mitmproxy as follows
+The addons can be used with mitmproxy as follows.
 
 ```mitmproxy -s /path/to/repo/client_hello_addon.py```
+
+The python wrapper script requires that mitmdump is placed within the script directory. Next the script can be used as follows.
+
+```cd unittest
+./test_selfsigned.py```
 
