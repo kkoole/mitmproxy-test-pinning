@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Python script used to perform testing of certificate pinning implementations
-using self-signed certificate, part of mitmproxy-test-pinning.
+using self-signed certificates, part of mitmproxy-test-pinning.
 Authors: Julia Kulacz, Kaj Koole
 """
 
