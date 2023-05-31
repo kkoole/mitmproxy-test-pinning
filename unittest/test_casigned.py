@@ -40,7 +40,7 @@ def print_certificate_attributes(cert_file):
     print("Valid Until:", cert.not_valid_after)
 
 
-def main(hostname="*.badssl.com", ca_cert):
+def main(ca_cert, hostname="*.badssl.com"):
     # Generate certificate
     gencert = GenerateCertificate(hostname)
     gencert.gen_casigned(ca_cert)
@@ -69,6 +69,6 @@ def main(hostname="*.badssl.com", ca_cert):
 
 if __name__ == '__main__':
     hostlist = open(sys.argv[1], 'r').readlines()
-    ca_cert = sys.arvg[2]
+    ca_cert = sys.argv[2]
     for hostname in hostlist:
         main(hostname, ca_cert)
